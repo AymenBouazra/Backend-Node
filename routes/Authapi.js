@@ -15,16 +15,21 @@ router.post('/register',async(req,res)=>{
             }
             req.body.password = hash;
             await Company.create(req.body);
-            res.json({message: 'Register successfullu'});
+            res.json({message: 'Register successfully'});
         });
     }else{
         res.status(400).json({message: 'E-mail Exist !'});
     }
 });
+router.get('/register',  async(req,res)=>{
+    const companys = await Company.find()
+    res.json(companys);
+});
 
 //Sign In
-router.post('login',async(req,res)=>{
+router.post('/login',async(req,res)=>{
     const loginCompany = await Company.findOne({email: req.body.email});
+    console.log(loginCompany);
     if (loginCompany != null) {
         const validPassword = await bcrypt.compare(req.body.password, loginCompany.password);
         if (validPassword) {
@@ -32,7 +37,7 @@ router.post('login',async(req,res)=>{
                 companyName: loginCompany.companyName,
                 companyId: loginCompany._id
             }
-            const createdToken = jwt.sign(tokenData, process.env.JWT_SECRET,{expiresIn: process.nextTick.EXPIRE});
+            const createdToken = jwt.sign(tokenData, process.env.JWT_SECRET,{expiresIn: process.env.EXPIRE});
             res.status(200).json({message: 'Login seccessfully', token: createdToken});
         } else {
             res.status(400).json({message: 'Please verify your E-mail or Password'});
@@ -41,5 +46,9 @@ router.post('login',async(req,res)=>{
         res.status(400).json({message: 'Please verify your E-mail or Password'});
     }
 })
+router.get('/register',  async(req,res)=>{
+    const companys = await Company.find()
+    res.json(companys);
+});
 
 module.exports = router;
