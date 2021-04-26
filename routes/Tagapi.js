@@ -8,7 +8,7 @@ router.get('/tags',async(req, res) =>{
   res.json(tags);  
 });
 
-router.get('/tags/:id',passport.authenticate('bearer', { session: false }),async(req,res)=>{
+router.get('/tags/:id',async(req,res)=>{
 const tagId = await Tag.findById(req.params.id);
 res.json(tagId);
 });
@@ -23,14 +23,14 @@ router.post('/tags',async(req,res)=>{
     res.status(400).json('tag already exists');
 });
 
-router.put('/tags/:id',passport.authenticate('bearer', { session: false }),async(req,res)=>{
+router.put('/tags/:id',async(req,res)=>{
     const updateTag = await Tag.findByIdAndUpdate(req.params.id,req.body,{new:true});
     res.json(updateTag);
 });
 
-router.delete('/tags/:id',passport.authenticate('bearer', { session: false }),async(req,res)=>{
+router.delete('/tags/:id',async(req,res)=>{
     const deleteTag = await Tag.findOneAndDelete(req.params.id);
-    res.json({message: 'delete seccussefuly'});
+    res.json(deleteTag);
 })
 
 module.exports = router;

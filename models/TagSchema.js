@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const tag = mongoose.Schema({
     title: String,
-    Description: String,
+    description: String,
 },{
     versionKey: false,
     timestamps: true
