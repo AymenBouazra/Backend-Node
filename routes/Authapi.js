@@ -29,7 +29,6 @@ router.get('/register',  async(req,res)=>{
 //Sign In
 router.post('/login',async(req,res)=>{
     const loginCompany = await Company.findOne({email: req.body.email});
-    console.log(loginCompany);
     if (loginCompany != null) {
         const validPassword = await bcrypt.compare(req.body.password, loginCompany.password);
         if (validPassword) {

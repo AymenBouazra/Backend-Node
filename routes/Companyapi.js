@@ -23,7 +23,7 @@ router.put('/company/:id',passport.authenticate('bearer', { session: false }),as
     res.json(updateCompany);
 })
 
-router.delete('/tags/:id',passport.authenticate('bearer', { session: false }),async(req,res)=>{
+router.delete('/company/:id',passport.authenticate('bearer', { session: false }),async(req,res)=>{
     const deleteCompany = await Company.findByIdAndDelete(req.params.id);
     res.json({message: 'delete seccussefuly'});
 });
