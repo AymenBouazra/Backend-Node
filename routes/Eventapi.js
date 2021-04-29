@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Event = require('../models/EventSchema');
+const Company = require('../models/CompanySchema');
 
 router.get('/events',passport.authenticate('bearer', { session: false }),async(req,res)=>{
     const events = await Event.find().populate('tags');
@@ -15,6 +16,7 @@ router.get('/events/:id',passport.authenticate('bearer', { session: false }),asy
 
 router.post('/events',passport.authenticate('bearer', { session: false }),async(req,res)=>{
     const createdEvent = await Event.create(req.body);
+    const updatedCompany = await Company.findByIdAndUpdate(req.user._id,{$push:{events:createdEvent._id}},{new:true})
     res.json(createdEvent);
 });
 
