@@ -21,10 +21,6 @@ router.post('/register',async(req,res)=>{
         res.status(400).json({message: 'E-mail Exist !'});
     }
 });
-router.get('/register',  async(req,res)=>{
-    const companys = await Company.find()
-    res.json(companys);
-});
 
 //Sign In
 router.post('/login',async(req,res)=>{
@@ -45,9 +41,5 @@ router.post('/login',async(req,res)=>{
         res.status(400).json({message: 'Please verify your E-mail or Password'});
     }
 })
-router.get('/register',  async(req,res)=>{
-    const companys = await Company.find()
-    res.json(companys);
-});
 
 module.exports = router;
