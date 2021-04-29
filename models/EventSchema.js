@@ -2,8 +2,10 @@ const mongoose = require('mongoose');
 const event = mongoose.Schema({
     eventName: String,
     eventDescription: String,
-    starDateTime: Date,
-    endDateTime: Date,
+    startDate: Date,
+    endDate: Date,
+    startTime: String,
+    endTime: String,
     photo: String,
     price: String,
     availableTicketNumber: Number,
