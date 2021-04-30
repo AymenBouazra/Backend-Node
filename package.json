@@ -25,6 +25,7 @@
     "nodemailer": "^6.5.0",
     "passport": "^0.4.1",
     "passport-http-bearer": "^1.0.1",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "randomstring": "^1.1.5"
   }
 }

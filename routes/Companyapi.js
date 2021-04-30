@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const Company = require('../models/CompanySchema');
-
+const bcrypt = require('bcrypt')
 router.get('/company',async(req,res)=>{
     const companys = await Company.find().populate('events');
     res.json(companys);
