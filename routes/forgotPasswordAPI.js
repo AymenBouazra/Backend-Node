@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
-const crypto = require('crypto');
 const Company = require('../models/CompanySchema');
 const Token = require('../models/tokenSchema');
 const nodemailer = require('nodemailer');
 const fs = require('fs');
 const path = require('path');
 const ejs = require('ejs');
+const randomString = require('randomstring')
 
 
 router.post('/forgot-password', async (req, res) => {
@@ -22,14 +21,11 @@ router.post('/forgot-password', async (req, res) => {
         if (token) {
             await token.deleteOne()
         };
-        const bcryptSalt = process.env.BCRYPT_SALT;
-        const resetToken = crypto.randomBytes(32).toString("hex");
-        const hash = await bcrypt.hash(resetToken, Number(bcryptSalt));
-    
+       
+        const resetToken = randomString.generate(30)
         const createdToken = await new Token({
             companyId: company._id,
-            token: hash,
-            createdAt: Date.now(),
+            token: resetToken,
         }).save();
         //send mail
         const transporter = nodemailer.createTransport({
