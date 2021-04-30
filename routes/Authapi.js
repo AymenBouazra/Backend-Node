@@ -41,5 +41,9 @@ router.post('/login',async(req,res)=>{
         res.status(400).json({message: 'Please verify your E-mail or Password'});
     }
 })
+// Logout
+router.get('/logout', (req, res)=>{
+    req.logout();
+  });
 
 module.exports = router;
