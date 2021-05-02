@@ -28,7 +28,7 @@ const upload = multer({
     storage: myStorage,
     fileFilter: fileFilter,
     limits:{
-        fileSize: 1024 * 1024 * 200
+        fileSize: 52428800,
     },
 });
 
@@ -46,8 +46,6 @@ router.post('/events',[passport.authenticate('bearer', { session: false }),uploa
     const createdEvent = await Event.create(req.body);
     const updatedCompany = await Company.findByIdAndUpdate(req.user._id,{$push:{events:createdEvent._id}},{new:true})
     res.json(createdEvent);
-    console.log(createdEvent);
-    console.log(updatedCompany);
 });
 
 router.put('/events/:id',[passport.authenticate('bearer', { session: false }),upload.single('photo')],async(req,res)=>{
