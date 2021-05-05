@@ -3,6 +3,15 @@ const router = express.Router();
 const passport = require('passport');
 const Tag = require('../models/TagSchema');
 
+router.get('/tags-options',passport.authenticate('bearer', { session: false }),async(req, res) =>{
+    const tags = await Tag.find();
+    let response = [];
+    tags.forEach(element => {
+        response.push( { label: element.title, value:element._id })
+      })
+    res.json(response);  
+  });
+
 router.get('/tags',passport.authenticate('bearer', { session: false }),async(req, res) =>{
   const tags = await Tag.find();
   res.json(tags);  
