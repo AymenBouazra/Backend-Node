@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
@@ -15,6 +16,7 @@ app.use(bodyParser.urlencoded({limit: "52428800", extended: true, parameterLimit
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.set('view engine', 'ejs');
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 //import connection to database
 const connect = require('./database/connect');
 
