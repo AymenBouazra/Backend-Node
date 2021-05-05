@@ -23,6 +23,7 @@ const AuthAPI = require('./routes/Authapi');
 const companyAPI = require('./routes/Companyapi');
 const eventAPI = require('./routes/Eventapi');
 const tagAPI = require('./routes/Tagapi');
+const userAPI = require('./routes/Userapi');
 const forgotPasswordAPI = require('./routes/forgotPasswordAPI');
 const resetPasswordAPI = require('./routes/resetPasswordAPI');
 app.get('/', async (req, res) => {
@@ -34,6 +35,7 @@ app.use('',AuthAPI);
 app.use('',companyAPI);
 app.use('',eventAPI);
 app.use('',tagAPI);
+app.use('',userAPI);
 app.use('',forgotPasswordAPI);
 app.use('',resetPasswordAPI);
 
