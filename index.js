@@ -26,6 +26,7 @@ const tagAPI = require('./routes/Tagapi');
 const userAPI = require('./routes/Userapi');
 const forgotPasswordAPI = require('./routes/forgotPasswordAPI');
 const resetPasswordAPI = require('./routes/resetPasswordAPI');
+const contactAPI = require('./routes/Contactapi');
 app.get('/', async (req, res) => {
     res.json({message: "Hello World!"});
 });
@@ -38,6 +39,7 @@ app.use('',tagAPI);
 app.use('',userAPI);
 app.use('',forgotPasswordAPI);
 app.use('',resetPasswordAPI);
+app.use('',contactAPI);
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
