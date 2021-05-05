@@ -3,7 +3,8 @@ const router = express.Router();
 const passport = require('passport');
 const multer = require('multer');
 const Company = require('../models/CompanySchema');
-const bcrypt = require('bcrypt')
+const bcrypt = require('bcrypt');
+const path = require('path')
 
 const myStorage = multer.diskStorage({
     destination: (req,file,cb) => {
@@ -13,7 +14,7 @@ const myStorage = multer.diskStorage({
     filename: async(req,file,cb) => {
         const extension = path.extname(file.originalname) ;
         const newFileName = Date.now() + extension;
-        await User.findByIdAndUpdate(req.params.id,{photo: newFileName},{new:true})
+        // await Company.findByIdAndUpdate(req.params.id,{photo: newFileName},{new:true})
         cb(null,newFileName);
     },
 });
@@ -40,7 +41,7 @@ router.get('/company/:id',passport.authenticate('bearer', { session: false }),as
     res.json(companyId);
 });
 
-router.post('/company',[passport.authenticate('bearer', { session: false }),upload.single('photo')],async(req,res)=>{
+router.post('/company',[passport.authenticate('bearer', { session: false }), upload.single('photo')],async(req,res)=>{
     const createdCompany = await Company.findOne({email:req.body.email});
     if (createdCompany == null) {
         bcrypt.hash(req.body.password, 10, async(error, hash)=>{
