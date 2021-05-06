@@ -25,10 +25,10 @@ const AuthAPI = require('./routes/Authapi');
 const companyAPI = require('./routes/Companyapi');
 const eventAPI = require('./routes/Eventapi');
 const tagAPI = require('./routes/Tagapi');
-const userAPI = require('./routes/Userapi');
 const forgotPasswordAPI = require('./routes/forgotPasswordAPI');
 const resetPasswordAPI = require('./routes/resetPasswordAPI');
 const contactAPI = require('./routes/Contactapi');
+const reservationAPI = require('./routes/Reservationapi')
 app.get('/', async (req, res) => {
     res.json({message: "Hello World!"});
 });
@@ -38,10 +38,11 @@ app.use('',AuthAPI);
 app.use('',companyAPI);
 app.use('',eventAPI);
 app.use('',tagAPI);
-app.use('',userAPI);
+app.use('',reservationAPI);
 app.use('',forgotPasswordAPI);
 app.use('',resetPasswordAPI);
 app.use('',contactAPI);
+
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);
