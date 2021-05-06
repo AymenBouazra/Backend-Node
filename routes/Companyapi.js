@@ -18,6 +18,7 @@ const myStorage = multer.diskStorage({
         if (req.params.id) {
             req.body.photo = photoLink;
             await Company.findByIdAndUpdate(req.params.id, req.body, { new: true })
+            cb(null, newFileName);
         } else {
             req.body.photo = photoLink;
             bcrypt.hash(req.body.password, 10, async (error, hash) => {
@@ -26,7 +27,7 @@ const myStorage = multer.diskStorage({
                 }
                 req.body.password = hash;
                 await Company.create(req.body);
-                cb(null, newFileName);;
+                cb(null, newFileName);
             })
         }
     },

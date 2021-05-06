@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
 
-router.post('/contact', async(req, res)=>{
+router.post('/contact', (req, res)=>{
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -10,11 +10,11 @@ router.post('/contact', async(req, res)=>{
             pass: process.env.PASSWORD,
         },
     });
-    const info = await transporter.sendMail({
-        from: `${req.body.email}`, // sender address
-        to: `${process.env.EMAIL}`,
-        subject: `${req.body.subject}`, 
-        text: `${req.body.text}`
+    transporter.sendMail({
+        from: req.body.email,
+        to: process.env.EMAIL,
+        subject: 'Message from: '+req.body.name+', with his e-mail :'+req.body.email+', Subject: '+req.body.subject,
+        text: req.body.text
     });
     res.json({message: 'Mail send successfully'})
 })
