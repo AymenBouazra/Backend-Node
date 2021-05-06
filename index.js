@@ -24,6 +24,7 @@ const companyAPI = require('./routes/Companyapi');
 const eventAPI = require('./routes/Eventapi');
 const tagAPI = require('./routes/Tagapi');
 const userAPI = require('./routes/Userapi');
+const homeAPI = require('./routes/homeAPI');
 const forgotPasswordAPI = require('./routes/forgotPasswordAPI');
 const resetPasswordAPI = require('./routes/resetPasswordAPI');
 app.get('/', async (req, res) => {
@@ -36,6 +37,7 @@ app.use('',companyAPI);
 app.use('',eventAPI);
 app.use('',tagAPI);
 app.use('',userAPI);
+app.use('',homeAPI);
 app.use('',forgotPasswordAPI);
 app.use('',resetPasswordAPI);
 
