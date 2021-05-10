@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <mate charest="utf-8" />
+    <title></title>
+    <style>
+        body{
+            height: 6in;
+            width: 10.5in;
+            border: 2px solid red;
+            orientation: portrait;
+            color: black;
+        }
+        .ticket-table{ 
+          font-family: Arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+
+        }
+        .ticket-info{
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+          
+          
+        }
+        .ticket-style-header{
+          background-color:rgba(128, 128, 128, 0.589);
+        }
+        .ticket-style-column{
+          background-color:rgba(88, 60, 60, 0.589);
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Reservation ticket for : <%= fullName  %></h1>
+    <table class="ticket-table">
+      <tr class="ticket-header">
+        <th class="ticket-info ticket-style-header">First Name</td>
+        <th class="ticket-info ticket-style-header">Last Name</td>
+        <th class="ticket-info ticket-style-header">Email</td>
+        <th class="ticket-info ticket-style-header">Event Date</td>
+        <th class="ticket-info ticket-style-header">Eevent Name</td>
+        <th class="ticket-info ticket-style-header">Event description</td>
+        <th class="ticket-info ticket-style-header">Event Price</td>
+      </th>
+      <tr class="ticket-header">
+        <td class="ticket-info ticket-style-column"><%= firstname %> </td>
+        <td class="ticket-info ticket-style-column"><%= lastname %> </td>
+        <td class="ticket-info ticket-style-column"></td>
+        <td class="ticket-info ticket-style-column">dummy info </td>
+        <td class="ticket-info ticket-style-column">dummy info </td>
+        <td class="ticket-info ticket-style-column">dummy info </td>
+        <td class="ticket-info ticket-style-column">dummy info </td>
+      </th>
+    </table>
+    <p><canvas id="canvas"></canvas></p>
+  </body>
+</html>
+<!-- 
+  ekteb les info eli ebch yet7ato fi ticket
+  exmple : first name
+            last name
+            email
+            event date 
+            event name
+            event description 
+            event price 
+
+
+-->
