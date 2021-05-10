@@ -16,7 +16,7 @@ router.post('/contact', (req, res)=>{
         subject: 'Message from: '+req.body.name+', with his e-mail :'+req.body.email+', Subject: '+req.body.subject,
         text: req.body.text
     });
-    res.json({message: 'Mail send successfully'})
+    res.json({message: 'Mail sent successfully'})
 })
 
 
