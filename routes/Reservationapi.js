@@ -25,48 +25,10 @@ router.post('/reservation', async (req, res) => {
             firstname: `${reservation.firstName}`,
             lastname: `${reservation.lastName}`,
             email: `${reservation.email}`,
-            // canvas:''
         }
 
-
-
-        // const stringdata = JSON.stringify(reserved);
-
-        // if(stringData.length ===0 ) {
-        //     res.send('Empty data!')
-        // }else {
-        //     QRCode.toDataURL(stringData, (err,url)=>  {
-        //         if(err){
-        //             res.send('Error occured')
-        //         }else{
-        //             res.render(html,{url})
-        //         }
-        //     })
-        // };
-
-        // let s = ''
-        // generateQR = async (stringdata) => {
-
-
-        // QRCode.toCanvas(new Canvas(),stringdata,{type: "png"})
-        //     .then(canvas => {
-        //       console.log(canvas)
-        //     //   reserved.canvas = canvas
-        //     })
-        //     .catch(err => {
-        //       console.error(err)
-        //     })
-
-
-
-        // (async () => {
-        //     let a = await generateQR(stringdata)
-        //     console.log(reserved)
-        // })()
         // render
         const render = ejs.render(html, reserved)
-        // console.log(render);
-
         // pdf creation 
 
         const document = {
@@ -74,11 +36,12 @@ router.post('/reservation', async (req, res) => {
             data: {
                 users: reservations,
             },
-            path: "./output.pdf",
+            path: path.resolve('./ticket.pdf'),
             type: "",
         };
-
-        pdf.create(document, reservation).toStream((buffer) => {
+    
+        pdf.create(document, reservation).then((res) => {
+            console.log(res.filename);
             // step 3 send mail for each reservation
             const transporter = nodemailer.createTransport({
                 service: 'gmail',
@@ -92,9 +55,9 @@ router.post('/reservation', async (req, res) => {
                 to: reserved.email,
                 subject: 'Your reservation ticket',
                 text: 'Here is your reservation ticket',
-                attachements: [{
+                attachments: [{
                     filename: 'ticket.pdf',
-                    content: buffer
+                    content: fs.createReadStream(res.filename)
                 }]
             });
 
