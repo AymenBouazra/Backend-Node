@@ -8,7 +8,7 @@ router.get('/all-events', async (req, res) => {
     const events = await Event.find().populate('tags');
     res.json(events)
 });
-router.get('/events/:id',async(req,res)=>{
+router.get('/event-detail/:id',async(req,res)=>{
     const eventId = await Event.findById(req.params.id);
     res.json(eventId);
 });
