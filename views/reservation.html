@@ -5,8 +5,7 @@
     <title></title>
     <style>
         body{
-            height: 6in;
-            width: 10.5in;
+          padding: 15px;
             border: 2px solid red;
             orientation: portrait;
             color: black;
@@ -21,8 +20,6 @@
           border: 1px solid #dddddd;
           text-align: left;
           padding: 8px;
-          
-          
         }
         .ticket-style-header{
           background-color:rgba(128, 128, 128, 0.589);
@@ -30,42 +27,33 @@
         .ticket-style-column{
           background-color:rgba(88, 60, 60, 0.589);
         }
+        .qrcode{
+          margin: auto;
+        }
     </style>
   </head>
   <body>
     <h1>Reservation ticket for : <%= fullName  %></h1>
+    <h2>
+      Event: <%= eventName %>
+    </h2>
+    <h2>
+      Event date: <%= startDate  %> at <%= startTime %> => <%= endDate  %> at <%= endTime %>
+    </h2>
     <table class="ticket-table">
       <tr class="ticket-header">
-        <th class="ticket-info ticket-style-header">First Name</td>
-        <th class="ticket-info ticket-style-header">Last Name</td>
-        <th class="ticket-info ticket-style-header">Email</td>
-        <th class="ticket-info ticket-style-header">Event Date</td>
-        <th class="ticket-info ticket-style-header">Eevent Name</td>
-        <th class="ticket-info ticket-style-header">Event description</td>
-        <th class="ticket-info ticket-style-header">Event Price</td>
+        <th class="ticket-info ticket-style-header">First name</th>
+        <th class="ticket-info ticket-style-header">Last name</th>
+        <th class="ticket-info ticket-style-header">Email</th>
       </th>
       <tr class="ticket-header">
         <td class="ticket-info ticket-style-column"><%= firstname %> </td>
         <td class="ticket-info ticket-style-column"><%= lastname %> </td>
-        <td class="ticket-info ticket-style-column"></td>
-        <td class="ticket-info ticket-style-column">dummy info </td>
-        <td class="ticket-info ticket-style-column">dummy info </td>
-        <td class="ticket-info ticket-style-column">dummy info </td>
-        <td class="ticket-info ticket-style-column">dummy info </td>
+        <td class="ticket-info ticket-style-column"><%= email %></td>
       </th>
     </table>
-    <p><canvas id="canvas"></canvas></p>
+    <img src="<%=qrcodeLink%>" class="qrcode" alt="">
+
+
   </body>
 </html>
-<!-- 
-  ekteb les info eli ebch yet7ato fi ticket
-  exmple : first name
-            last name
-            email
-            event date 
-            event name
-            event description 
-            event price 
-
-
--->

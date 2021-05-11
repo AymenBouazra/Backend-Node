@@ -17,6 +17,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended:false}))
 app.set('view engine', 'ejs');
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
+app.use('/qrcodes', express.static(path.join(__dirname, 'qrcodes')))
 //import connection to database
 const connect = require('./database/connect');
 
