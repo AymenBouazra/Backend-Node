@@ -33,8 +33,10 @@ const upload = multer({
 });
 
 router.get('/events',passport.authenticate('bearer', { session: false }),async(req,res)=>{
-    const events = await Event.find().populate('tags');
-    res.json(events)
+   
+    const companyId = await Company.findById(req.user._id).populate("events")
+   
+    res.json(companyId)
 });
 
 router.get('/events/:id',passport.authenticate('bearer', { session: false }),async(req,res)=>{
@@ -55,6 +57,7 @@ router.put('/events/:id',[passport.authenticate('bearer', { session: false }),up
 
 router.delete('/events/:id',passport.authenticate('bearer', { session: false }),async(req,res)=>{
     const deleteEvent = await Event.findByIdAndDelete(req.params.id);
-    res.json({message: 'delete seccussefuly'});
+    const updatedCompany = await Company.findByIdAndUpdate(req.user._id,{$pull:{events:deleteEvent._id}},{new:true})
+    res.json({message: 'Deleted successefuly'});
 })
 module.exports = router;
