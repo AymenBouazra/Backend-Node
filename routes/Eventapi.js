@@ -34,8 +34,7 @@ const upload = multer({
 
 router.get('/events',passport.authenticate('bearer', { session: false }),async(req,res)=>{
    
-    const companyId = await Company.findById(req.user._id).populate("events")
-   
+    const companyId = await Company.findById(req.user._id).populate("events");
     res.json(companyId)
 });
 
