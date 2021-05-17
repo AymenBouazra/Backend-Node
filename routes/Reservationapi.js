@@ -15,7 +15,10 @@ app.set('view engine', 'ejs')
 router.post('/reservation/:id', async (req, res) => {
     const event = await Event.findById(req.params.id)
     const user = await User.create(req.body.user);
-    const reservations = await Reservation.insertMany(req.body.reservations);
+    console.log(req.body);
+    const reservations = await Reservation.insertMany(req.body.tickets);
+    console.log("hello"+reservations);
+    // console.log("reservations"+reservations);
     // step 2 GENERATE PDF containing reservation invitation
   
 
@@ -30,30 +33,30 @@ router.post('/reservation/:id', async (req, res) => {
         const endTime= new Date(event.endTime);
         const formatedEndTime = `${endTime.getHours()} : ${endTime.getMinutes()}`
         let reserved = {
-            fullName: `${reservation.firstName} ${reservation.lastName}`,
-            firstname: `${reservation.firstName}`,
-            lastname: `${reservation.lastName}`,
-            email: `${reservation.email}`,
-            qrcodeLink: `http://localhost:3000/qrcodes/${reservation._id}.png`,
+            fullName: `${reservation.reservedfName} ${reservation.reservedlName}`,
+            firstname: `${reservation.reservedfName}`,
+            lastname: `${reservation.reservedlName}`,
+            email: `${reservation.reservedEmail}`,
             eventName: `${event.eventName}`,
             startDate: `${formatedStartDate}`,
             endDate:`${formatedEndDate}`,
             startTime : `${formatedStartTime}`,
             endTime:`${formatedEndTime}`
         }
+        const qrcodeLink= {qrcodeLink:`http://localhost:3000/qrcodes/${reservation._id}.png`}
        
         await QRCode.toFile(path.resolve(`./qrcodes/${reservation._id}.png`),JSON.stringify(reserved))
 
         // render
         const html = fs.readFileSync("views/reservation.html", "utf8");
-        const render = ejs.render(html, reserved)
+        const render = ejs.render(html, {reserved:reserved,qrcodeLink:qrcodeLink})
         // pdf creation 
         const Document = {
             html: render,
             data: {
                 users: reservation,
             },
-            path: path.resolve('./ticket.pdf'),
+            path: path.resolve(`./tickets/${reservation._id}.pdf`),
             type: "",
         };
         var options = {
