@@ -1,59 +1,113 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <mate charest="utf-8" />
-    <title></title>
-    <style>
-        body{
-          padding: 15px;
-            border: 2px solid red;
-            orientation: portrait;
-            color: black;
-        }
-        .ticket-table{ 
-          font-family: Arial, sans-serif;
-          border-collapse: collapse;
-          width: 100%;
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="./Reservation.css"> -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Days+One&display=swap" rel="stylesheet">
+  <title>Document</title>
+  <style>
 
-        }
-        .ticket-info{
-          border: 1px solid #dddddd;
-          text-align: left;
-          padding: 8px;
-        }
-        .ticket-style-header{
-          background-color:rgba(128, 128, 128, 0.589);
-        }
-        .ticket-style-column{
-          background-color:rgba(88, 60, 60, 0.589);
-        }
-        .qrcode{
-          margin: auto;
-        }
-    </style>
-  </head>
-  <body>
-    <h1>Reservation ticket for : <%= fullName  %></h1>
-    <h2>
-      Event: <%= eventName %>
-    </h2>
-    <h2>
-      Event date: <%= startDate  %> at <%= startTime %> => <%= endDate  %> at <%= endTime %>
-    </h2>
-    <table class="ticket-table">
-      <tr class="ticket-header">
-        <th class="ticket-info ticket-style-header">First name</th>
-        <th class="ticket-info ticket-style-header">Last name</th>
-        <th class="ticket-info ticket-style-header">Email</th>
-      </th>
-      <tr class="ticket-header">
-        <td class="ticket-info ticket-style-column"><%= firstname %> </td>
-        <td class="ticket-info ticket-style-column"><%= lastname %> </td>
-        <td class="ticket-info ticket-style-column"><%= email %></td>
-      </th>
-    </table>
-    <img src="<%=qrcodeLink%>" class="qrcode" alt="">
-
-
-  </body>
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+*{
+    margin:0;
+    padding: 0;
+    background-color: #424242;
+}
+.info{
+    padding: 10px;
+    margin: 5px;
+}
+.container{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: space-between;
+    -webkit-align-items: center;
+    align-items: center;
+    flex-grow: 2;
+    background-color: #424242;
+    padding: 20px;
+    margin-top: 20px;
+    height: 550px;
+}
+.flex-item:nth-of-type(1){
+  -webkit-flex-grow: 2;
+    flex-grow: 2;
+}
+.logo-container{ 
+    font-family: 'Days One', sans-serif;
+    border-radius: 50%;
+    background-color:#FF9900;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    width: 450px;
+    height: 450px;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-justify-content: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size:60px;
+    color: #BCBCBC;
+    -webkit-text-align: center;
+    text-align: center;
+    opacity: 0.4;
+}
+.event-details{ 
+    font-family: 'Russo One', sans-serif;
+    font-size: 35px;
+    color: white;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-z-index:2;
+    z-index: 100;
+   
+}
+.qrcode-container{
+  -webkit-display: flex;
+  -webkit-justify-content: center;
+  -webkit-align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  </style>
+</head>
+<body>
+ <div class="container">
+   <div class="event-details flex-item">
+     <div class="info-header">
+       <p class="info">first name: </p>
+       <p class="info">last name: </p>
+       <p class="info">email: </p>
+       <p class="info">Starts/Ends at: </p>
+       <p class="info">Time: </p>
+       
+     </div>
+     <div class="info-person">
+       <p class="info"><%= firstname %></p>
+       <p class="info"> <%= lastname %></p>
+       <p class="info"> <%= email %></p>
+       <p class="info"> <%= startDate %> &nbsp; => &nbsp;<%= endDate %> </p>
+       <p class="info"> <%= startTime %> &nbsp; / &nbsp;<%= endTime %></p>
+     </div>
+     <div class="logo-container"> AMALIA ENTERTAINEMENT & EVENTS <br> <%= eventName %> </div>
+   </div>
+   <div class="qrcode-container flex-item">
+    <img src="<%=qrcodeLink%>" class="qrcode" alt=" QRCode">
+   </div>
+ </div>
+</body>
 </html>

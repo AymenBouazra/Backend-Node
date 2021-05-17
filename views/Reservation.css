@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+*{
+    margin:0;
+    padding: 0;
+    background-color: #424242;
+}
+.info{
+    padding: 10px;
+    margin: 5px;
+}
+.container{
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 2;
+}
+.flex-item:nth-of-type(1){
+    flex-grow: 2;
+}
+.logo-container{ 
+    font-family: 'Days One', sans-serif;
+    border-radius: 50%;
+    background-color:#FF9900;
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    width: 450px;
+    height: 450px;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    font-size:60px;
+    color: #BCBCBC;
+    text-align: center;
+    opacity: 0.4;
+
+}
+.event-details{ 
+    border: 1px solid red;
+    font-family: 'Russo One', sans-serif;
+    font-size: 40px;
+    color: white;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
