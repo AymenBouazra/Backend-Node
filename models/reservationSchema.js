@@ -1,9 +1,10 @@
 const mongoose = require('mongoose');
 const path = require('path')
+
 const reservation = mongoose.Schema({
-    firstName: String,
-    lastName: String,
-    email:  String,
+    reservedfName: String,
+    reservedlName: String,
+    reservedEmail: String,
     
     directory: {type : String , default : path.resolve('./tickets')}
 },{
