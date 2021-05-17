@@ -30,7 +30,8 @@ router.post('/login',async(req,res)=>{
         if (validPassword) {
             const tokenData = {
                 companyName: loginCompany.companyName,
-                companyId: loginCompany._id
+                companyId: loginCompany._id,
+                companyRole: loginCompany.role
             }
             const createdToken = jwt.sign(tokenData, process.env.JWT_SECRET,{expiresIn: process.env.EXPIRE});
             res.status(200).json({message: 'Login seccessfully', token: createdToken});
