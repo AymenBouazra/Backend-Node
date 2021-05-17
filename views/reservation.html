@@ -97,16 +97,16 @@
        
      </div>
      <div class="info-person">
-       <p class="info"><%= firstname %></p>
-       <p class="info"> <%= lastname %></p>
-       <p class="info"> <%= email %></p>
-       <p class="info"> <%= startDate %> &nbsp; => &nbsp;<%= endDate %> </p>
-       <p class="info"> <%= startTime %> &nbsp; / &nbsp;<%= endTime %></p>
+       <p class="info"><%= reserved.firstname %></p>
+       <p class="info"> <%= reserved.lastname %></p>
+       <p class="info"> <%= reserved.email %></p>
+       <p class="info"> <%= reserved.startDate %> &nbsp; => &nbsp;<%= reserved.endDate %> </p>
+       <p class="info"> <%= reserved.startTime %> &nbsp; / &nbsp;<%= reserved.endTime %></p>
      </div>
-     <div class="logo-container"> AMALIA ENTERTAINEMENT & EVENTS <br> <%= eventName %> </div>
+     <div class="logo-container"> AMALIA ENTERTAINEMENT & EVENTS <br> <%= reserved.eventName %> </div>
    </div>
    <div class="qrcode-container flex-item">
-    <img src="<%=qrcodeLink%>" class="qrcode" alt=" QRCode">
+    <img src="<%=qrcodeLink.qrcodeLink%>" class="qrcode" alt=" QRCode">
    </div>
  </div>
 </body>
