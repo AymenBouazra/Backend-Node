@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 dotenv.config({ debug: process.env.DEBUG });
+const passport = require('./passports/passport')
 const port = 3000;
 
 const app = express();
