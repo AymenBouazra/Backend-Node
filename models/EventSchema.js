@@ -11,6 +11,10 @@ const event = mongoose.Schema({
     availableTicketNumber: Number,
     eventType: String,
     location: String,
+    company:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "company"
+    },
     tags:[
         {
             type: mongoose.Schema.Types.ObjectId,
