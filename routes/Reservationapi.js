@@ -51,14 +51,18 @@ router.post('/reservation/:id', async (req, res) => {
         const Document = {
             html: render,
             data: {
-                users: reservations,
+                users: reservation,
             },
             path: path.resolve('./ticket.pdf'),
             type: "",
         };
-
+        var options = {
+            format: "A3",
+            orientation: "landscape",
+            border: "10mm"
+        };
        
-        pdf.create(Document, reservation).then((res) => {
+        pdf.create(Document,options).then((res) => {
             
             // step 3 send mail for each reservation
             const transporter = nodemailer.createTransport({
