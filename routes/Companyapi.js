@@ -50,8 +50,8 @@ router.get('/company', passport.authenticate('bearer', { session: false }), asyn
         res.json([req.user]);   
     }else{
         //if connected user is a Super-Admin
-        const companys = await Company.find();
-        res.json(companys);
+        const companies = await Company.find();
+        res.json(companies);
     }
 });
 router.get('/connectedCompany',passport.authenticate('bearer',{session:false}),async(req, res)=>{
@@ -73,7 +73,7 @@ router.put('/company/:id', [passport.authenticate('bearer', { session: false }),
 
 router.delete('/company/:id', passport.authenticate('bearer', { session: false }), async (req, res) => {
     const deleteCompany = await Company.findByIdAndDelete(req.params.id);
-    res.json({ message: 'delete seccussefuly' });
+    res.json({ message: 'Deleted successfuly' });
 });
 
 module.exports = router;

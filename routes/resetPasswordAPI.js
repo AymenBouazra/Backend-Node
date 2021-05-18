@@ -29,7 +29,6 @@ router.post('/reset-password', async (req, res) => {
       res.status(401).json({message : 'Invalid or expired password reset link'})
     }
   }
-
 })
 
 module.exports = router;

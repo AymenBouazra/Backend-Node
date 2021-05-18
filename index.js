@@ -30,7 +30,8 @@ const homeAPI = require('./routes/homeAPI');
 const forgotPasswordAPI = require('./routes/forgotPasswordAPI');
 const resetPasswordAPI = require('./routes/resetPasswordAPI');
 const contactAPI = require('./routes/Contactapi');
-const reservationAPI = require('./routes/Reservationapi')
+const reservationAPI = require('./routes/Reservationapi');
+const DashboardAPI = require('./routes/DashboardAPI');
 app.get('/', async (req, res) => {
     res.json({message: "Hello World!"});
 });
@@ -45,6 +46,7 @@ app.use('',homeAPI);
 app.use('',forgotPasswordAPI);
 app.use('',resetPasswordAPI);
 app.use('',contactAPI);
+app.use('',DashboardAPI);
 
 
 app.listen(port, () => {

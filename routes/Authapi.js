@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
 const Company = require('../models/CompanySchema');
 
 //Sign Up
@@ -11,11 +10,11 @@ router.post('/register',async(req,res)=>{
     if(companyFound == null){
         bcrypt.hash(req.body.password, 10, async(error, hash)=>{
             if (error) {
-                res.status(500).json({message: 'Server error ! '});
+                res.status(500).json({message: 'Server error!'});
             }
             req.body.password = hash;
             await Company.create(req.body);
-            res.json({message: 'Register successfully'});
+            res.json({message: 'Registered successfully'});
         });
     }else{
         res.status(400).json({message: 'E-mail Exist !'});
@@ -34,7 +33,7 @@ router.post('/login',async(req,res)=>{
                 companyRole: loginCompany.role
             }
             const createdToken = jwt.sign(tokenData, process.env.JWT_SECRET,{expiresIn: process.env.EXPIRE});
-            res.status(200).json({message: 'Login seccessfully', token: createdToken});
+            res.status(200).json({message: 'Logged in successfully', token: createdToken});
         } else {
             res.status(400).json({message: 'Please verify your E-mail or Password'});
         }
