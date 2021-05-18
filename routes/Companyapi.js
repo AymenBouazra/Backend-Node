@@ -54,6 +54,9 @@ router.get('/company', passport.authenticate('bearer', { session: false }), asyn
         res.json(companys);
     }
 });
+router.get('/connectedCompany',passport.authenticate('bearer',{session:false}),async(req, res)=>{
+    res.json(req.user)
+})
 
 router.get('/company/:id', passport.authenticate('bearer', { session: false }), async (req, res) => {
     const companyId = await Company.findById(req.params.id);
