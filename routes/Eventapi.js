@@ -33,9 +33,16 @@ const upload = multer({
 });
 
 router.get('/events',passport.authenticate('bearer', { session: false }),async(req,res)=>{
-   
-    const companyId = await Company.findById(req.user._id).populate("events");
-    res.json(companyId)
+    if (req.user.role == 'Admin') {
+        const eventsOfConnectedCompany = await Company.findById(req.user._id).populate("events");
+        res.json(eventsOfConnectedCompany.events);
+    }else{
+        //if connected user is a Super-Admin
+        const allEvents = await Event.find();
+        res.json(allEvents);
+    }
+    
+    
 });
 
 router.get('/events/:id',passport.authenticate('bearer', { session: false }),async(req,res)=>{
