@@ -30,7 +30,8 @@ router.post('/login',async(req,res)=>{
             const tokenData = {
                 companyName: loginCompany.companyName,
                 companyId: loginCompany._id,
-                companyRole: loginCompany.role
+                companyRole: loginCompany.role,
+                companyAvatar: loginCompany.photo
             }
             const createdToken = jwt.sign(tokenData, process.env.JWT_SECRET,{expiresIn: process.env.EXPIRE});
             res.status(200).json({message: 'Logged in successfully', token: createdToken});
