@@ -68,7 +68,8 @@ router.post('/company', [passport.authenticate('bearer', { session: false }), up
 });
 
 router.put('/company/:id', [passport.authenticate('bearer', { session: false }), upload.single('photo')], async (req, res) => {
-    res.json({message:'Updated! '});
+    const findCompany = await Company.findById(req.params.id);
+    res.json(findCompany);
 })
 
 router.delete('/company/:id', passport.authenticate('bearer', { session: false }), async (req, res) => {
